@@ -34,6 +34,6 @@ while True:
                 connection_list.remove(player)
 
     for sock in error_sockets: # close error sockets
-        print("ERROR SOCKET FOUND")
+        
         sock.close()
         connection_list.remove(sock)
