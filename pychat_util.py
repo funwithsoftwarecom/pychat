@@ -115,7 +115,11 @@ class Room:
     def broadcast(self, from_player, msg):
         msg = from_player.name.encode() + b":" + msg
         for player in self.players:
-            player.socket.sendall(msg)
+            try:
+                player.socket.sendall(msg)
+            except OSError:
+                print("Player not responding:" + player.name)
+                self.remove_player(player)
 
     def remove_player(self, player):
         self.players.remove(player)
